@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CucumberHomework10" />
+        <module name="WebDriver-Advanced-HW1" />
       </profile>
     </annotationProcessing>
   </component>
