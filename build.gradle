@@ -55,6 +55,7 @@ def cucumberTagExpression = "@test"
 task cucumber(type: Test) {
     description = 'Execute Cucmber test using Gradle'
     dependsOn assemble, testClasses, compileTestJava
+    //exclude '**/CucumberRunnerTest.class' -- exclusion the cucumber runner in task
     doLast {
         javaexec {
             main = "io.cucumber.core.cli.Main"
