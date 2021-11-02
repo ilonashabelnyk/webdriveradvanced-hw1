@@ -1,5 +1,4 @@
 pages\BasePage.class
-driver\DriverManager.class
 pages\SearchAttributesPage.class
-pages\LoginPage.class
 pages\HomePage.class
+driver\DriverManager.class

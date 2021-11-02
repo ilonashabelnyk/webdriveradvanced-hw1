@@ -1,7 +1,3 @@
 cucumberTest\runner\CucumberRunnerTest.class
-cucumberTest\steps\PerformSearchSteps.class
-cucumberTest\hooks\DriverHooks.class
-cucumberTest\hooks\ScreenshotHook.class
-cucumberTest\steps\SignInJoinButtonSteps.class
-cucumberTest\steps\SearchPlaceholderSteps.class
 cucumberTest\steps\OpenWebPageSteps.class
+cucumberTest\hooks\DriverHooks.class

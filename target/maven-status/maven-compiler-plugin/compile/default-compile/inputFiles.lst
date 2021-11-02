@@ -1,5 +1,11 @@
-C:\Users\Ilona_Shabelnyk\IdeaProjects\CucumberHomework10\src\main\java\pages\BasePage.java
-C:\Users\Ilona_Shabelnyk\IdeaProjects\CucumberHomework10\src\main\java\pages\HomePage.java
-C:\Users\Ilona_Shabelnyk\IdeaProjects\CucumberHomework10\src\main\java\driver\DriverManager.java
-C:\Users\Ilona_Shabelnyk\IdeaProjects\CucumberHomework10\src\main\java\pages\LoginPage.java
-C:\Users\Ilona_Shabelnyk\IdeaProjects\CucumberHomework10\src\main\java\pages\SearchAttributesPage.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\dto\CreditCardDetails.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\pages\BasePage.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\dto\CheckoutOrderSummary.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\dto\ErrorMessagesDeliveryAddressForm.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\dto\CreditCardErrorMessages.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\pages\SearchAttributesPage.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\pages\HomePage.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\dto\BasketOrderSummary.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\pages\CheckOutAttributesPage.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\dto\DeliveryAddressForm.java
+C:\Users\Ilona_Shabelnyk\IdeaProjects\WebDriver-Advanced-HW1\src\main\java\driver\DriverManager.java
