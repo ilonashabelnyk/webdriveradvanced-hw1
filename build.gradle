@@ -60,10 +60,13 @@ task cucumber(type: Test) {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
             args = ['--plugin', 'pretty',
-                    '--glue', 'cucumberTest',
-                   '--tags', cucumberTagExpression,
-                    '--threads', cucumberThreadsOption,
-                    'src/test/resources/features']
+                    '--glue', 'cucumberTest', 'src/test/resources/features',
+                    '--tags', cucumberTagExpression,
+                    '--threads', cucumberThreadsOption]
         }
     }
+}
+
+test {
+    exclude '**/CucumberRunnerTest.class'
 }
