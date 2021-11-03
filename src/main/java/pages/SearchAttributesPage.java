@@ -23,7 +23,7 @@ public class SearchAttributesPage extends BasePage {
     private static final String languageDropDown = "//select[@id='filterLang']";
     private static final String formatDropDown = "//select[@id='filterFormat']";
     private static final String refineResultsBtn = "//div[@class='form-group padded-btn-wrap']//*[@class='btn btn-primary']";
-    private static final int searchResultsAfterAppliedFilters = 3;
+    private static final int searchResultsAfterAppliedFilters = 4;
     private static final String addToBasketBtnThinkingInJavaBook = "//a[@href='/basket/addisbn/isbn13/9781492072508']";
 
     public WebElement findSearchInput() {

@@ -3,6 +3,7 @@ package cucumberTest.steps;
 import dto.*;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.DataTableType;
+import io.cucumber.java.Transpose;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -35,8 +36,9 @@ public class DesktopCheckoutForGuestUser {
     @DataTableType
     public CreditCardDetails creditCardDetails(Map<String, String> entry) {
         return new CreditCardDetails(
-                entry.get("creditCardField"),
-                entry.get("creditCardValue"));
+                entry.get("cardNumber"),
+                entry.get("expiryDate"),
+                entry.get("cvv"));
 
     }
 
@@ -80,7 +82,7 @@ public class DesktopCheckoutForGuestUser {
 
     @And("I search for {string}")
     public void executeSearchFor(String searchTerm) {
-        searchAttributesPage.performSearch("Thinking in Java");
+        searchAttributesPage.performSearch(searchTerm);
     }
 
     @And("I am redirected to a {string}")
@@ -194,9 +196,9 @@ public class DesktopCheckoutForGuestUser {
     }
 
     @When("I enter my card details")
-    public void enterCardDetails(List<CreditCardDetails> creditCardDetails) {
-        checkOutAttributesPage.setCardNumber(creditCardDetails.get(0).getCreditCardValue());
-        checkOutAttributesPage.setExpiryDate(creditCardDetails.get(1).getCreditCardValue());
-        checkOutAttributesPage.setCVV(creditCardDetails.get(2).getCreditCardValue());
+    public void enterCardDetails(@Transpose List<CreditCardDetails> creditCardDetails) {
+        checkOutAttributesPage.setCardNumber(creditCardDetails.get(0).getCardNumber());
+        checkOutAttributesPage.setExpiryDate(creditCardDetails.get(1).getExpiryDate());
+        checkOutAttributesPage.setCVV(creditCardDetails.get(2).getCvv());
     }
 }

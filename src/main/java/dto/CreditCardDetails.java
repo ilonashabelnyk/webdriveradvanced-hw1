@@ -1,27 +1,38 @@
 package dto;
 
 public class CreditCardDetails {
-    private String creditCardField;
-    private String creditCardValue;
+    private String cardNumber;
+    private String expiryDate;
+    private String cvv;
 
-    public CreditCardDetails(String creditCardField, String creditCardValue) {
-        this.creditCardField = creditCardField;
-        this.creditCardValue = creditCardValue;
+    public CreditCardDetails(String cardNumber, String expiryDate, String cvv) {
+        this.cardNumber = cardNumber;
+        this.expiryDate = expiryDate;
+        this.cvv = cvv;
     }
 
-    public String getCreditCardField() {
-        return creditCardField;
+
+    public String getCardNumber() {
+        return cardNumber;
     }
 
-    public void setCreditCardField(String creditCardField) {
-        this.creditCardField = creditCardField;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
-    public String getCreditCardValue() {
-        return creditCardValue;
+    public String getExpiryDate() {
+        return expiryDate;
     }
 
-    public void setCreditCardValue(String creditCardValue) {
-        this.creditCardValue = creditCardValue;
+    public void setExpiryDate(String expiryYear) {
+        this.expiryDate = expiryYear;
+    }
+
+    public String getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
     }
 }
