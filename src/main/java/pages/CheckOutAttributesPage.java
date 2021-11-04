@@ -1,18 +1,18 @@
 package pages;
 
-import driver.DriverManager;
+import com.codeborne.selenide.SelenideElement;
 import dto.DeliveryAddressForm;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CheckOutAttributesPage extends BasePage {
     private static final String basketCheckoutBtnOnPopUp = "//div[@class='modal-body']//a[contains(@class,'continue-to-basket')]";
     private static final String expectedYourBasketTitle = "Your basket";
-    private static final String checkoutBtn = "//div[@class='checkout-head-wrap']/div[@class='basketHeaderButtons']/a[@href='https://bookdepository.com/payment?variant=true'][@class='checkout-btn btn optimizely-variation-2']";
+    private static final String checkoutBtn = "//a[@class='checkout-btn btn original-bucket']";
     private static final String checkoutPageTxt = "//*[text()='Payment details']";
     private static final String expectedCheckoutPageTxt = "Payment details";
     private static final String buyNowBtn = "//*[@class='address-form-col checkout-flex-buttons']/button[@type='submit']";
@@ -44,13 +44,13 @@ public class CheckOutAttributesPage extends BasePage {
     private static final String creditCardErrorMsgs = "//div[@class='buynow-error-msg']";
     private static final String emailAddressSrt = "test@user.com";
 
-    public WebElement basketCheckoutBtnOnPopUp() {
-        return findElement(By.xpath(basketCheckoutBtnOnPopUp));
+    public SelenideElement basketCheckoutBtnOnPopUp() {
+        return findElement(By.xpath(basketCheckoutBtnOnPopUp)).should(appear);
     }
 
     public void clickOnBasketCheckoutBtnOnPopUp() {
-        new WebDriverWait(DriverManager.getDriver(), 10).until(ExpectedConditions.elementToBeClickable(basketCheckoutBtnOnPopUp()));
-        basketCheckoutBtnOnPopUp().click();
+        Wait().until(ExpectedConditions.elementToBeClickable(basketCheckoutBtnOnPopUp()));
+        basketCheckoutBtnOnPopUp().shouldBe(visible).click();
     }
 
     public static String getExpectedYourBasketTitle() {
@@ -58,21 +58,20 @@ public class CheckOutAttributesPage extends BasePage {
     }
 
     public String getYourBasketPageTitle() {
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-        return js.executeScript("return document.title;").toString();
+        return executeJavaScript("return document.title;").toString();
     }
 
-    public WebElement checkoutBtn() {
+    public SelenideElement checkoutBtn() {
         return findElement(By.xpath(checkoutBtn));
     }
 
     public void clickOnCheckoutBtn() {
-        new WebDriverWait(DriverManager.getDriver(), 10).until(ExpectedConditions.elementToBeClickable(checkoutBtn()));
-        checkoutBtn().click();
+        Wait().until(ExpectedConditions.elementToBeClickable(checkoutBtn()));
+        checkoutBtn().shouldBe(exist).click();
     }
 
-    public WebElement checkoutPageTxt() {
-        return findElement(By.xpath(checkoutPageTxt));
+    public SelenideElement checkoutPageTxt() {
+        return findElement(By.xpath(checkoutPageTxt)).shouldBe(appear);
     }
 
     public String getCheckoutPageTxt() {
@@ -84,17 +83,16 @@ public class CheckOutAttributesPage extends BasePage {
         return expectedCheckoutPageTxt;
     }
 
-    public WebElement buyNowBtn() {
+    public SelenideElement buyNowBtn() {
         return findElement(By.xpath(buyNowBtn));
     }
 
     public void clickOnBuyNowBtn() {
-        new WebDriverWait(DriverManager.getDriver(), 20).until(ExpectedConditions.elementToBeClickable(buyNowBtn()));
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
-        js.executeScript("arguments[0].click();", buyNowBtn());
+        Wait().until(ExpectedConditions.elementToBeClickable(buyNowBtn()));
+        executeJavaScript("arguments[0].click();", buyNowBtn());
     }
 
-    public WebElement emailAddress() {
+    public SelenideElement emailAddress() {
         return findElement(By.xpath(emailAddress));
     }
 
@@ -111,15 +109,13 @@ public class CheckOutAttributesPage extends BasePage {
     }
 
     public void setFullName(String fullNameStr) {
-        Actions builder = new Actions(DriverManager.getDriver());
-        Action seriesOfActions = builder
+        actions()
                 .moveToElement(fullName())
-                .click()
                 .keyDown(fullName(), Keys.SHIFT)
                 .sendKeys(fullName(), fullNameStr)
                 .keyUp(fullName(), Keys.SHIFT)
-                .build();
-        seriesOfActions.perform();
+                .build()
+                .perform();
     }
 
     public void setAddressLine1(String addressLine1Str) {
@@ -147,12 +143,10 @@ public class CheckOutAttributesPage extends BasePage {
     }
 
     public void clearFocusFromPostcodeZipcodeInputField() {
-        Actions builder = new Actions(DriverManager.getDriver());
-        Action seriesOfActions = builder
-                .moveToElement(postcodeZipcode(), -20, 25)
+        actions()
+                .moveToElement(postcodeZipcode(), -10, 25)
                 .click()
-                .build();
-        seriesOfActions.perform();
+                .build().perform();
     }
 
     public CheckOutAttributesPage fillInDeliveryAddress(DeliveryAddressForm deliveryAddress) {
@@ -170,11 +164,11 @@ public class CheckOutAttributesPage extends BasePage {
         deliveryCountry.selectByValue(deliveryCountryStr);
     }
 
-    public WebElement basketOrderDeliveryCost() {
+    public SelenideElement basketOrderDeliveryCost() {
         return findElement(By.cssSelector(basketOrderDeliveryCost));
     }
 
-    public WebElement basketOrderTotal() {
+    public SelenideElement basketOrderTotal() {
         return findElement(By.cssSelector(basketOrderTotal));
     }
 
@@ -186,19 +180,19 @@ public class CheckOutAttributesPage extends BasePage {
         return basketOrderTotal().getText();
     }
 
-    public WebElement checkoutOrderSubTotal() {
+    public SelenideElement checkoutOrderSubTotal() {
         return findElement(By.cssSelector(checkoutOrderSubTotal));
     }
 
-    public WebElement checkoutOrderDelivery() {
+    public SelenideElement checkoutOrderDelivery() {
         return findElement(By.cssSelector(checkoutOrderDelivery));
     }
 
-    public WebElement checkoutOrderVAT() {
+    public SelenideElement checkoutOrderVAT() {
         return findElement(By.cssSelector(checkoutOrderVAT));
     }
 
-    public WebElement checkoutOrderTotal() {
+    public SelenideElement checkoutOrderTotal() {
         return findElement(By.cssSelector(checkoutOrderTotal));
     }
 
@@ -218,37 +212,37 @@ public class CheckOutAttributesPage extends BasePage {
         return checkoutOrderTotal().getText();
     }
 
-    public WebElement creditCardNumberIframe() {
+    public SelenideElement creditCardNumberIframe() {
         return findElement(By.xpath(creditCardNumberIframe));
     }
 
-    public WebElement expiryDateIframe() {
+    public SelenideElement expiryDateIframe() {
         return findElement(By.xpath(expiryDateIframe));
     }
 
-    public WebElement cvvIframe() {
+    public SelenideElement cvvIframe() {
         return findElement(By.xpath(cvvIframe));
     }
 
     public void setCardNumber(String cardNumberStr) {
-        DriverManager.getDriver().switchTo().frame(creditCardNumberIframe());
+        switchTo().frame(creditCardNumberIframe());
         findElement(By.xpath(cardNumber)).sendKeys(cardNumberStr);
-        DriverManager.getDriver().switchTo().defaultContent();
+        switchTo().defaultContent();
     }
 
     public void setExpiryDate(String expiryDateStr) {
-        DriverManager.getDriver().switchTo().frame(expiryDateIframe());
+        switchTo().frame(expiryDateIframe());
         findElement(By.xpath(expiryDate)).sendKeys(expiryDateStr);
-        DriverManager.getDriver().switchTo().defaultContent();
+        switchTo().defaultContent();
     }
 
     public void setCVV(String cvvStr) {
-        DriverManager.getDriver().switchTo().frame(cvvIframe());
+        switchTo().frame(cvvIframe());
         findElement(By.xpath(cvv)).sendKeys(cvvStr);
-        DriverManager.getDriver().switchTo().defaultContent();
+        switchTo().defaultContent();
     }
 
-    public WebElement fullNameErrorMsg() {
+    public SelenideElement fullNameErrorMsg() {
         return findElement(By.xpath(fullNameErrorMsg));
     }
 
@@ -260,7 +254,7 @@ public class CheckOutAttributesPage extends BasePage {
         return fullNameErrorMsg().getText();
     }
 
-    public WebElement emailAddressErrorMsg() {
+    public SelenideElement emailAddressErrorMsg() {
         return findElement(By.xpath(emailAddressErrorMsg));
     }
 
@@ -272,7 +266,7 @@ public class CheckOutAttributesPage extends BasePage {
         return emailAddressErrorMsg().getText();
     }
 
-    public WebElement addressLine1ErrorMsg() {
+    public SelenideElement addressLine1ErrorMsg() {
         return findElement(By.xpath(addressLine1ErrorMsg));
     }
 
@@ -284,7 +278,7 @@ public class CheckOutAttributesPage extends BasePage {
         return addressLine1ErrorMsg().getText();
     }
 
-    public WebElement townCityErrorMsg() {
+    public SelenideElement townCityErrorMsg() {
         return findElement(By.xpath(townCityErrorMsg));
     }
 
@@ -296,7 +290,7 @@ public class CheckOutAttributesPage extends BasePage {
         return townCityErrorMsg().getText();
     }
 
-    public WebElement postcodeErrorMsg() {
+    public SelenideElement postcodeErrorMsg() {
         return findElement(By.xpath(postcodeErrorMsg));
     }
 
@@ -308,7 +302,7 @@ public class CheckOutAttributesPage extends BasePage {
         return postcodeErrorMsg().getText();
     }
 
-    public WebElement creditCardErrorMsgs() {
+    public SelenideElement creditCardErrorMsgs() {
         return findElement(By.xpath(creditCardErrorMsgs));
     }
 

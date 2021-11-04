@@ -8,7 +8,7 @@
     So that I can specify my delivery and payment details and place the order
 
     Scenario: Proceed to checkout, final review and place order as guest user
-    //Given I am an anonymous customer with clear cookies
+    Given I am an anonymous customer with clear cookies
       When I open the "Initial home page"
       And I search for "Thinking in Java"
       And I am redirected to a "Search page"
@@ -55,7 +55,6 @@
       And I select "Ukraine" as delivery country
       Then there is no validation error messages displayed on 'Delivery Address' form
       When I enter my card details
-        | creditCardField | creditCardValue  |
         | cardNumber      | 4111111111111111 |
         | expiryDate      | 03 2022          |
         | cvv             | 123              |

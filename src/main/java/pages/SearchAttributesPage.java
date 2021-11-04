@@ -1,15 +1,20 @@
 package pages;
 
-import driver.DriverManager;
+import com.codeborne.selenide.*;
+
+import static com.codeborne.selenide.Condition.exist;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+
+import static com.codeborne.selenide.Condition.visible;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Selenide.$;
+
 
 public class SearchAttributesPage extends BasePage {
     private static final String searchInput = "searchTerm";
@@ -26,27 +31,22 @@ public class SearchAttributesPage extends BasePage {
     private static final int searchResultsAfterAppliedFilters = 4;
     private static final String addToBasketBtnThinkingInJavaBook = "//a[@href='/basket/addisbn/isbn13/9781492072508']";
 
-    public WebElement findSearchInput() {
-        return findElement(By.name(searchInput));
+    public SelenideElement findSearchInput() {
+        return $(By.name(searchInput)).shouldBe(exist);
     }
 
     public void clickOnSearchBtn() {
-        findElement(By.xpath(searchBtn)).click();
+        findElement(By.xpath(searchBtn)).shouldBe(visible).click();
     }
 
     public int countSearchResults() {
-        List<WebElement> resultsNumber = findElements(By.xpath(searchResults));
+        ElementsCollection resultsNumber = findElements(By.xpath(searchResults)).shouldBe(sizeGreaterThan(0));
         return resultsNumber.size();
     }
 
     public void performSearch(String searchTerm) {
-        Actions builder = new Actions(DriverManager.getDriver());
-        Action seriesOfActions = builder
-                .moveToElement(findSearchInput())
-                .click()
-                .sendKeys(searchTerm + Keys.ENTER)
-                .build();
-        seriesOfActions.perform();
+        findSearchInput().sendKeys(searchTerm);
+        clickOnSearchBtn();
     }
 
     public static String getExpectedRedirectURLSearchResults() {
@@ -54,12 +54,12 @@ public class SearchAttributesPage extends BasePage {
     }
 
     public String getSearchResultsPage() {
-        return DriverManager.getDriver().getCurrentUrl();
+        return WebDriverRunner.driver().url();
     }
 
     public List<String> getBookTitles() {
         List<String> bookTitlesList = new ArrayList<>();
-        List<WebElement> bookTitles = findElements(By.xpath(booksTitles));
+        ElementsCollection bookTitles = findElements(By.xpath(booksTitles));
         for (int i = 0; i < bookTitles.size(); i++) {
             bookTitlesList.add(bookTitles.get(i).getText());
         }
@@ -91,12 +91,12 @@ public class SearchAttributesPage extends BasePage {
         priceRange.selectByValue(formatStr);
     }
 
-    public WebElement findRefineResultsBtn() {
+    public SelenideElement findRefineResultsBtn() {
         return findElement(By.xpath(refineResultsBtn));
     }
 
     public void clickOnRefineResults() {
-        findRefineResultsBtn().click();
+        findRefineResultsBtn().shouldBe(visible).click();
     }
 
     public static int getSearchResultsAfterAppliedFilters() {

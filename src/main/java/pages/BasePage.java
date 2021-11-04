@@ -1,22 +1,20 @@
 package pages;
 
-import driver.DriverManager;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.PageFactory;
+import com.codeborne.selenide.*;
 
-import java.util.List;
+import org.openqa.selenium.*;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class BasePage {
-    public BasePage() {
-        PageFactory.initElements(DriverManager.getDriver(), this);
+
+    public SelenideElement findElement(By by) {
+        return $(by);
     }
 
-    public WebElement findElement(By by) {
-        return DriverManager.getDriver().findElement(by);
-    }
-
-    public List<WebElement> findElements(By by) {
-        return DriverManager.getDriver().findElements(by);
+    public ElementsCollection findElements(By by) {
+        return $$(by);
     }
 
     public boolean isElementDisplayed(By by) {
@@ -25,7 +23,7 @@ public class BasePage {
 
     public boolean isCurrentlyVisible(By by) {
         try {
-            WebElement element = findElement(by);
+            SelenideElement element = findElement(by);
             return (element != null) && (element.isDisplayed());
         } catch (ElementNotVisibleException | NoSuchElementException | StaleElementReferenceException e) {
             return false;
