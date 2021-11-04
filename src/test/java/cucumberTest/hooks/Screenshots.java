@@ -1,13 +1,9 @@
 package cucumberTest.hooks;
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.junit.ScreenShooter;
-import com.codeborne.selenide.junit.TextReport;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
-import org.junit.Rule;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 
 import java.nio.charset.StandardCharsets;
 
