@@ -55,7 +55,6 @@
       And I select "Ukraine" as delivery country
       Then there is no validation error messages displayed on 'Delivery Address' form
       When I enter my card details
-        | creditCardField | creditCardValue  |
         | cardNumber      | 4111111111111111 |
         | expiryDate      | 03 2022          |
         | cvv             | 123              |

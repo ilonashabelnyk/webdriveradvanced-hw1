@@ -198,7 +198,7 @@ public class DesktopCheckoutForGuestUser {
     @When("I enter my card details")
     public void enterCardDetails(@Transpose List<CreditCardDetails> creditCardDetails) {
         checkOutAttributesPage.setCardNumber(creditCardDetails.get(0).getCardNumber());
-        checkOutAttributesPage.setExpiryDate(creditCardDetails.get(1).getExpiryDate());
-        checkOutAttributesPage.setCVV(creditCardDetails.get(2).getCvv());
+        checkOutAttributesPage.setExpiryDate(creditCardDetails.get(0).getExpiryDate());
+        checkOutAttributesPage.setCVV(creditCardDetails.get(0).getCvv());
     }
 }
